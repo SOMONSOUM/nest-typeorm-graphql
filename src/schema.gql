@@ -1,0 +1,183 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Resource {
+  id: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  description: String
+  permissionResources: [PermissionResource!]
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type PermissionResource {
+  id: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  permission: Permission!
+  resource: Resource!
+}
+
+type Permission {
+  id: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  description: String!
+  rolePermissions: [RolePermission!]
+  permissionResources: [PermissionResource!]
+}
+
+type RolePermission {
+  id: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  role: Role!
+  permission: Permission!
+}
+
+type Role {
+  id: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  description: String!
+  users: [User!]
+  rolePermissions: [RolePermission!]
+}
+
+type User {
+  id: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  email: String!
+  fullname: String
+  phoneNumber: String
+  profile: String
+  role: Role!
+}
+
+type UsersResponse {
+  error: Int!
+  message: String!
+  data: [User!]
+}
+
+type CreateUserResponse {
+  error: Int!
+  message: String!
+  data: User
+}
+
+type UserResponse {
+  error: Int!
+  message: String!
+  data: User
+}
+
+type TokensResponse {
+  accessToken: String!
+  refreshToken: String!
+}
+
+type LoginResponse {
+  error: Int!
+  message: String!
+  data: TokensResponse
+}
+
+type RefreshTokenResponse {
+  error: Int!
+  message: String!
+  data: TokensResponse
+}
+
+type CreateRoleResponse {
+  error: Int!
+  message: String!
+  data: Role
+}
+
+type CreateResourceResponse {
+  error: Int!
+  message: String!
+  data: Resource
+}
+
+type CreatePermissionResponse {
+  error: Int!
+  message: String!
+  data: Permission
+}
+
+type ResourcesResponse {
+  error: Int!
+  message: String!
+  data: [Resource!]
+}
+
+type RolesResponse {
+  error: Int!
+  message: String!
+  data: [Role!]
+}
+
+type PermissionsResponse {
+  error: Int!
+  message: String!
+  data: [Permission!]
+}
+
+type Query {
+  users: UsersResponse!
+  user(id: Int!): UserResponse!
+  roles: RolesResponse!
+  resources: ResourcesResponse!
+  permissions: PermissionsResponse!
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!): CreateUserResponse!
+  login(input: LoginInput!): LoginResponse!
+  refreshToken(input: RefreshTokenInput!): RefreshTokenResponse!
+  createRole(input: CreateRoleInput!): CreateRoleResponse!
+  createResource(input: createResourceInput!): CreateResourceResponse!
+  createPermission(input: CreatePermissionInput!): CreatePermissionResponse!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+  fullname: String
+  phoneNumber: String
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input RefreshTokenInput {
+  refreshToken: String!
+}
+
+input CreateRoleInput {
+  name: String!
+  description: String
+}
+
+input createResourceInput {
+  name: String!
+  description: String
+}
+
+input CreatePermissionInput {
+  name: String!
+  description: String
+}
