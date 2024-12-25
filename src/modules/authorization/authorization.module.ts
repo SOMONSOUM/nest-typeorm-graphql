@@ -1,10 +1,19 @@
-import { Module } from "@nestjs/common";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { Permission, Resource, Role, RolePermission } from "./entities";
-import { PermissionResource } from "./entities/permission-resource.entity";
-import { AuthorizationResolver } from "./authorization.resolver";
-import { AuthorizationService, PermissionService, ResourceService, RoleService } from "./services";
-import { PermissionRepository, ResourceRepository, RoleRepository } from "./repositories";
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Permission, Resource, Role, RolePermission } from './entities';
+import { PermissionResource } from './entities/permission-resource.entity';
+import { AuthorizationResolver } from './authorization.resolver';
+import {
+  AuthorizationService,
+  PermissionService,
+  ResourceService,
+  RoleService,
+} from './services';
+import {
+  PermissionRepository,
+  ResourceRepository,
+  RoleRepository,
+} from './repositories';
 
 @Module({
   imports: [
@@ -14,7 +23,7 @@ import { PermissionRepository, ResourceRepository, RoleRepository } from "./repo
       RolePermission,
       PermissionResource,
       Resource,
-    ])
+    ]),
   ],
   providers: [
     AuthorizationResolver,
@@ -24,8 +33,7 @@ import { PermissionRepository, ResourceRepository, RoleRepository } from "./repo
     ResourceService,
     ResourceRepository,
     PermissionService,
-    PermissionRepository
-  ]
+    PermissionRepository,
+  ],
 })
-
-export class AuthorizationModule { }
+export class AuthorizationModule {}

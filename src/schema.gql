@@ -47,7 +47,7 @@ type Role {
   createdAt: DateTime!
   updatedAt: DateTime!
   name: String!
-  description: String!
+  description: String
   users: [User!]
   rolePermissions: [RolePermission!]
 }
@@ -137,6 +137,7 @@ type PermissionsResponse {
 type Query {
   users: UsersResponse!
   user(id: Int!): UserResponse!
+  me: User!
   roles: RolesResponse!
   resources: ResourcesResponse!
   permissions: PermissionsResponse!

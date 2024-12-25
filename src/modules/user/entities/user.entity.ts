@@ -8,25 +8,25 @@ import { Role } from '~/modules/authorization/entities/role.entity';
 export class User extends BaseEntity {
   @Field(() => String, { nullable: false })
   @Column({ nullable: false })
-  email: string
+  email: string;
 
   @Column({ nullable: false })
-  password: string
+  password: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
-  fullname: string
+  fullname: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
-  phoneNumber: string
+  phoneNumber: string;
 
   @Field(() => String, { nullable: true })
   @Column({ nullable: true })
-  profile: string
+  profile: string;
 
   @ManyToOne(() => Role, (role) => role.users)
   @Field(() => Role)
   @JoinColumn({ name: 'role_id' })
-  role: Role
+  role: Role;
 }
